@@ -1,0 +1,16 @@
+C:\01-Projetos\SMAR\MeetingRoomBackEnd\MeetingRoom\MeetingRoom\bin\Debug\netcoreapp2.2\appsettings.Development.json
+C:\01-Projetos\SMAR\MeetingRoomBackEnd\MeetingRoom\MeetingRoom\bin\Debug\netcoreapp2.2\appsettings.json
+C:\01-Projetos\SMAR\MeetingRoomBackEnd\MeetingRoom\MeetingRoom\bin\Debug\netcoreapp2.2\Properties\launchSettings.json
+C:\01-Projetos\SMAR\MeetingRoomBackEnd\MeetingRoom\MeetingRoom\bin\Debug\netcoreapp2.2\MeetingRoom.deps.json
+C:\01-Projetos\SMAR\MeetingRoomBackEnd\MeetingRoom\MeetingRoom\bin\Debug\netcoreapp2.2\MeetingRoom.runtimeconfig.json
+C:\01-Projetos\SMAR\MeetingRoomBackEnd\MeetingRoom\MeetingRoom\bin\Debug\netcoreapp2.2\MeetingRoom.runtimeconfig.dev.json
+C:\01-Projetos\SMAR\MeetingRoomBackEnd\MeetingRoom\MeetingRoom\bin\Debug\netcoreapp2.2\MeetingRoom.dll
+C:\01-Projetos\SMAR\MeetingRoomBackEnd\MeetingRoom\MeetingRoom\obj\Debug\netcoreapp2.2\MeetingRoom.csprojAssemblyReference.cache
+C:\01-Projetos\SMAR\MeetingRoomBackEnd\MeetingRoom\MeetingRoom\obj\Debug\netcoreapp2.2\MeetingRoom.RazorAssemblyInfo.cache
+C:\01-Projetos\SMAR\MeetingRoomBackEnd\MeetingRoom\MeetingRoom\obj\Debug\netcoreapp2.2\MeetingRoom.RazorAssemblyInfo.cs
+C:\01-Projetos\SMAR\MeetingRoomBackEnd\MeetingRoom\MeetingRoom\obj\Debug\netcoreapp2.2\MeetingRoom.AssemblyInfoInputs.cache
+C:\01-Projetos\SMAR\MeetingRoomBackEnd\MeetingRoom\MeetingRoom\obj\Debug\netcoreapp2.2\MeetingRoom.AssemblyInfo.cs
+C:\01-Projetos\SMAR\MeetingRoomBackEnd\MeetingRoom\MeetingRoom\obj\Debug\netcoreapp2.2\MeetingRoom.RazorTargetAssemblyInfo.cache
+C:\01-Projetos\SMAR\MeetingRoomBackEnd\MeetingRoom\MeetingRoom\bin\Debug\netcoreapp2.2\MeetingRoom.pdb
+C:\01-Projetos\SMAR\MeetingRoomBackEnd\MeetingRoom\MeetingRoom\obj\Debug\netcoreapp2.2\MeetingRoom.dll
+C:\01-Projetos\SMAR\MeetingRoomBackEnd\MeetingRoom\MeetingRoom\obj\Debug\netcoreapp2.2\MeetingRoom.pdb
