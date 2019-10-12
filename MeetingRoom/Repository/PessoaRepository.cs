@@ -9,6 +9,13 @@ namespace MeetingRoom.Repository
 {
     public class PessoaRepository : IPessoaRepository
     {
+
+        private readonly Context _context;
+        public PessoaRepository(Context context)
+        {
+            _context = context;
+        }
+
         public Pessoa Delete(int idPessoa)
         {
             throw new NotImplementedException();
@@ -27,6 +34,20 @@ namespace MeetingRoom.Repository
         public Pessoa GetById(int idPessoa)
         {
             throw new NotImplementedException();
+        }
+
+        public Pessoa GetbyLogin(string login)
+        {
+            try
+            {
+                Pessoa pessoa = _context.Pessoa.SingleOrDefault(x => x.Slogin.Equals(login));
+
+                return pessoa;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro os buscar e-mail de usuário.", ex);
+            }
         }
 
         public Pessoa Update(Pessoa pessoa, int idPessoa)

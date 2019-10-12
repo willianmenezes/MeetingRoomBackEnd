@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using MeetingRoom.Models;
 using MeetingRoom.Service;
 using MeetingRoom.Service.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,6 +25,7 @@ namespace MeetingRoom.Controllers
 
         // GET: api/Salas
         [HttpGet]
+        [Authorize("Bearer")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<Sala>))]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]

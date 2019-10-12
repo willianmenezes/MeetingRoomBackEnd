@@ -13,5 +13,6 @@ namespace MeetingRoom.Repository.Interface
         Pessoa Delete(int idPessoa);
         Pessoa Update(Pessoa pessoa, int idPessoa);
         bool Exists(int idPessoa);
+        Pessoa GetbyLogin(string login);
     }
 }

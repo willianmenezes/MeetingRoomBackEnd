@@ -5,8 +5,11 @@ using System.Threading.Tasks;
 using MeetingRoom.Models;
 using MeetingRoom.Repository;
 using MeetingRoom.Repository.Interface;
+using MeetingRoom.Security;
 using MeetingRoom.Service;
 using MeetingRoom.Service.Interface;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
@@ -54,6 +57,57 @@ namespace MeetingRoom
             //injetando classes
             services.AddScoped<ISalaService, SalaService>();
             services.AddScoped<ISalaRepository, SalaRepository>();
+
+            services.AddScoped<IPessoaService, PessoaService>();
+            services.AddScoped<IPessoaRepository, PessoaRepository>();
+
+            services.AddScoped<IReservaService, ReservaService>();
+            services.AddScoped<IReservaRepository, ReservaRepository>();
+
+            services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
+            services.AddScoped<ILoginService, LoginService>();
+
+            //configurações para a utiulização de JWT
+            var signinConfiguration = new SigninConfiguration();
+            services.AddSingleton(signinConfiguration);//apenas uma instancia enquanto a aplicação estiver executando
+
+            var configToken = new TokenConfiguration();
+
+            new ConfigureFromConfigurationOptions<TokenConfiguration>(
+                    Configuration.GetSection("TokenConfigurations")//busca confiugurações do token em appsettings.json
+                ).Configure(configToken);
+
+            services.AddSingleton(configToken);
+
+            services.AddAuthentication(auth =>
+            {
+                auth.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                auth.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(beareroptions =>
+            {
+                var parametrosValidacao = beareroptions.TokenValidationParameters;
+                parametrosValidacao.IssuerSigningKey = signinConfiguration.Key;
+                parametrosValidacao.ValidAudience = configToken.Audience;
+                parametrosValidacao.ValidIssuer = configToken.Issuer;
+
+                // Valida a assinatura de um token recebido
+                parametrosValidacao.ValidateIssuerSigningKey = true;
+
+                // Verifica se um token recebido ainda é válido
+                parametrosValidacao.ValidateLifetime = true;
+
+                // Tempo de tolerância para a expiração de um token (usado no caso de
+                // de problemas de sincronização de tempo entre diferentes
+                // computadores envolvidos no processo de comunicação)
+                parametrosValidacao.ClockSkew = TimeSpan.Zero;
+            });
+
+            services.AddAuthorization(auth =>
+            {
+                auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
+                    .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
+                    .RequireAuthenticatedUser().Build());
+            });
 
 
             // Configurando o serviço de documentação do Swagger
