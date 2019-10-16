@@ -1,6 +1,7 @@
 ﻿using MeetingRoom.Models;
 using MeetingRoom.Models.Enum;
 using MeetingRoom.Repository.Interface;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,9 +32,11 @@ namespace MeetingRoom.Repository
         {
             try
             {
-                return _context.Sala
+                var salas =  _context.Sala
                                 .Where(s => s.Nstatus == (int)StatusEnum.Ativo)
                                 .ToList();
+
+                return salas;
             }
             catch (Exception ex)
             {
@@ -43,7 +46,14 @@ namespace MeetingRoom.Repository
 
         public Sala GetById(int idSala)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return _context.Sala.SingleOrDefault(x => x.NidSala == idSala);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Sala não encontrada.", ex);
+            }
         }
 
         public Sala Update(Sala sala, int idSala)

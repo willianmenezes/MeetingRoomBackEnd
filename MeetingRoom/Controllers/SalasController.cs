@@ -40,5 +40,30 @@ namespace MeetingRoom.Controllers
                 return BadRequest(ex);
             }
         }
+
+        // GET: api/Salas/6
+        [HttpGet("{id}")]
+        [Authorize("Bearer")]
+        [ProducesResponseType(200, Type = typeof(Sala))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IActionResult GetById([FromRoute] int id)
+        {
+            try
+            {
+                var sala = _salaService.GetById(id);
+
+                if (sala == null)
+                {
+                    return NoContent();
+                }
+
+                return Ok(sala);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
     }
 }

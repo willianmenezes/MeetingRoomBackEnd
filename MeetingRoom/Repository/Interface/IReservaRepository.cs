@@ -13,5 +13,7 @@ namespace MeetingRoom.Repository.Interface
         Reserva Delete(int idReserva);
         Reserva Update(Reserva reserva, int idReserva);
         bool Exists(int idReserva);
+        IEnumerable<Reserva> GetByIdSala(int idSala);
+        Reserva Post(Reserva reserva);
     }
 }

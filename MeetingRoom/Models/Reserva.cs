@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace MeetingRoom.Models
@@ -15,7 +16,9 @@ namespace MeetingRoom.Models
         public string Sdescricao { get; set; }
         public int? NmotivoCancelamento { get; set; }
 
+        [JsonIgnore]
         public virtual Pessoa NidPessoaNavigation { get; set; }
+        [JsonIgnore]
         public virtual Sala NidSalaNavigation { get; set; }
     }
 }

@@ -10,8 +10,10 @@ namespace MeetingRoom.Service.Interface
     {
         IEnumerable<Reserva> GetAll();
         Reserva GetById(int idReserva);
+        IEnumerable<Reserva> GetByIdSala(int idSala);
         Reserva Delete(int idReserva);
         Reserva Update(Reserva reserva, int idReserva);
+        Reserva Post(Reserva reserva);
         bool Exists(int idReserva);
     }
 }

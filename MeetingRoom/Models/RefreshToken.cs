@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace MeetingRoom.Models
@@ -9,6 +10,7 @@ namespace MeetingRoom.Models
         public string SrefreshToken { get; set; }
         public string SfinalExpiration { get; set; }
 
+        [JsonIgnore]
         public virtual Pessoa NidPessoaNavigation { get; set; }
     }
 }

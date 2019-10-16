@@ -42,7 +42,14 @@ namespace MeetingRoom.Service
 
         public Sala GetById(int idSala)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return _salaRepository.GetById(idSala);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public Sala Update(Sala sala, int idSala)

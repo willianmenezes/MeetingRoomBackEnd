@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace MeetingRoom.Models
@@ -18,8 +19,11 @@ namespace MeetingRoom.Models
         public string Ssenha { get; set; }
         public int NidTipoPessoa { get; set; }
 
+        [JsonIgnore]
         public virtual TipoPessoa NidTipoPessoaNavigation { get; set; }
+        [JsonIgnore]
         public virtual RefreshToken RefreshToken { get; set; }
+        [JsonIgnore]
         public virtual ICollection<Reserva> Reserva { get; set; }
     }
 }
