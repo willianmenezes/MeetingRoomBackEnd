@@ -19,28 +19,30 @@ namespace MeetingRoom.Repository
 
         public Reserva Delete(int idReserva)
         {
-            throw new NotImplementedException();
-        }
+            try
+            {
+                var reserva = _context.Reserva.SingleOrDefault(x => x.NidReserva == idReserva);
 
-        public bool Exists(int idReserva)
-        {
-            throw new NotImplementedException();
-        }
+                if (reserva != null)
+                {
+                    _context.Remove(reserva);
+                }
 
-        public IEnumerable<Reserva> GetAll()
-        {
-            throw new NotImplementedException();
-        }
+                _context.SaveChanges();
 
-        public Reserva GetById(int idReserva)
-        {
-            throw new NotImplementedException();
+                return reserva;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao excluir a reserva.", ex);
+            }
         }
 
         public IEnumerable<Reserva> GetByIdSala(int idSala)
         {
             try
-            { 
+            {
                 return _context.Reserva.Where(x => x.NidSala == idSala).ToList();
             }
             catch (Exception ex)

@@ -23,24 +23,6 @@ namespace MeetingRoom.Controllers
             _reservaService = reservaService;
         }
 
-        // GET: api/Reservas
-        [HttpGet]
-        [Authorize("Bearer")]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<Reserva>))]
-        [ProducesResponseType(400)]
-        [ProducesResponseType(401)]
-        public IActionResult GetAll()
-        {
-            try
-            {
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex);
-            }
-        }
-
         // GET: api/Reservas/5
         [HttpGet("{id}")]
         [Authorize("Bearer")]
@@ -84,6 +66,38 @@ namespace MeetingRoom.Controllers
                 }
 
                 return Ok(res);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
+
+        // DELETE: api/Reservas/
+        [HttpDelete("{id}")]
+        [Authorize("Bearer")]
+        [ProducesResponseType(200, Type = typeof(Reserva))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IActionResult Delete([FromRoute] int id)
+        {
+            try
+            {
+
+                throw new Exception("Teste Willian");
+                //if (id == 0)
+                //{
+                //    return NoContent();
+                //}
+
+                //var reserva = _reservaService.Delete(id);
+
+                //if (reserva == null)
+                //{
+                //    return NoContent();
+                //}
+
+                //return Ok(reserva);
             }
             catch (Exception ex)
             {

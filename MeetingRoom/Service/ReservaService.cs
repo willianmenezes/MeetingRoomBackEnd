@@ -20,22 +20,14 @@ namespace MeetingRoom.Service
 
         public Reserva Delete(int idReserva)
         {
-            throw new NotImplementedException();
-        }
-
-        public bool Exists(int idReserva)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Reserva> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Reserva GetById(int idReserva)
-        {
-            throw new NotImplementedException();
+            try
+            {
+                return _reservaRepository.Delete(idReserva);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public IEnumerable<Reserva> GetByIdSala(int idSala)
@@ -46,7 +38,7 @@ namespace MeetingRoom.Service
 
                 List<Reserva> reservasDia = new List<Reserva>();
 
-                //gerando todas as reservas do dia vazias
+                //gerando todas as reservas do dia vazias de 30 em 30 minutos
                 for (int i = 16; i < 48; i++)
                 {
                     Reserva reserva = new Reserva();
@@ -88,11 +80,6 @@ namespace MeetingRoom.Service
             {
                 throw ex;
             }
-        }
-
-        public Reserva Update(Reserva reserva, int idReserva)
-        {
-            throw new NotImplementedException();
         }
     }
 }

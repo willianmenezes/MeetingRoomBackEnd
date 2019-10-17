@@ -8,11 +8,7 @@ namespace MeetingRoom.Repository.Interface
 {
     public interface IReservaRepository
     {
-        IEnumerable<Reserva> GetAll();
-        Reserva GetById(int idReserva);
         Reserva Delete(int idReserva);
-        Reserva Update(Reserva reserva, int idReserva);
-        bool Exists(int idReserva);
         IEnumerable<Reserva> GetByIdSala(int idSala);
         Reserva Post(Reserva reserva);
     }
