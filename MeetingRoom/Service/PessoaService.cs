@@ -1,37 +1,73 @@
 ﻿using MeetingRoom.Models;
+using MeetingRoom.Repository.Interface;
 using MeetingRoom.Service.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace MeetingRoom.Service
 {
     public class PessoaService : IPessoaService
     {
-        public Pessoa Delete(int idPessoa)
+
+        private readonly IPessoaRepository _pessoaRepository;
+
+        public PessoaService(IPessoaRepository pessoaRepository)
         {
-            throw new NotImplementedException();
+            _pessoaRepository = pessoaRepository;
+        }
+        public Pessoa GetbyLogin(string login)
+        {
+            try
+            {
+                return _pessoaRepository.GetbyLogin(login);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
-        public bool Exists(int idPessoa)
+        public Pessoa UpdatePassword(string senhaAtual, string novaSenha, string email)
         {
-            throw new NotImplementedException();
-        }
+            try
+            {
+                var pessoa = _pessoaRepository.GetbyLogin(email);
 
-        public IEnumerable<Pessoa> GetAll()
-        {
-            throw new NotImplementedException();
-        }
+                if (pessoa == null)
+                {
+                    throw new Exception("Usuário não encontrado na base de dados!");
+                }
 
-        public Pessoa GetById(int idPessoa)
-        {
-            throw new NotImplementedException();
-        }
+                //convertendo a senha digitada do usuário em base 64
+                var textBytes = Encoding.UTF8.GetBytes(novaSenha);
+                string encodeText = Convert.ToBase64String(textBytes);
+                novaSenha = encodeText;
 
-        public Pessoa Update(Pessoa pessoa, int idPessoa)
-        {
-            throw new NotImplementedException();
+                // convertendo a senha digitada do usuário em base 64
+                textBytes = Encoding.UTF8.GetBytes(senhaAtual);
+                encodeText = Convert.ToBase64String(textBytes);
+                senhaAtual = encodeText;
+
+                if (!pessoa.Ssenha.Equals(senhaAtual))
+                {
+                    throw new Exception("Senha atual inválida.");
+                }
+
+                if (pessoa.Ssenha.Equals(novaSenha))
+                {
+                    throw new Exception("A senha atual não pode ser igual a senha anterior.");
+                }
+
+                return _pessoaRepository.UpdatePassword(email, novaSenha);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
         }
     }
 }

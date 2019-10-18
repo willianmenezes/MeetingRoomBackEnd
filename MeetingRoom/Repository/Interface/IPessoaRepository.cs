@@ -8,11 +8,7 @@ namespace MeetingRoom.Repository.Interface
 {
     public interface IPessoaRepository
     {
-        IEnumerable<Pessoa> GetAll();
-        Pessoa GetById(int idPessoa);
-        Pessoa Delete(int idPessoa);
-        Pessoa Update(Pessoa pessoa, int idPessoa);
-        bool Exists(int idPessoa);
+        Pessoa UpdatePassword(string email, string novaSenha);
         Pessoa GetbyLogin(string login);
     }
 }

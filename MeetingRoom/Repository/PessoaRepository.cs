@@ -16,26 +16,6 @@ namespace MeetingRoom.Repository
             _context = context;
         }
 
-        public Pessoa Delete(int idPessoa)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool Exists(int idPessoa)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Pessoa> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Pessoa GetById(int idPessoa)
-        {
-            throw new NotImplementedException();
-        }
-
         public Pessoa GetbyLogin(string login)
         {
             try
@@ -50,9 +30,24 @@ namespace MeetingRoom.Repository
             }
         }
 
-        public Pessoa Update(Pessoa pessoa, int idPessoa)
+        public Pessoa UpdatePassword(string email, string novaSenha)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var pessoa = GetbyLogin(email);
+
+                pessoa.Ssenha = novaSenha;
+
+                _context.SaveChanges();
+
+                return pessoa;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Erro ao alterar senha.", ex);
+            }
         }
     }
 }

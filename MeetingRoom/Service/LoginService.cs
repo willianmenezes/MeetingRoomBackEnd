@@ -92,6 +92,7 @@ namespace MeetingRoom.Service
                             new Claim(JwtRegisteredClaimNames.UniqueName, usuario.Snome),
                             new Claim(JwtRegisteredClaimNames.UniqueName, usuario.Slogin),
                             new Claim(JwtRegisteredClaimNames.UniqueName, usuario.NidTipoPessoa.ToString()),
+                            new Claim(JwtRegisteredClaimNames.UniqueName, usuario.Sapelido)
                         }
                     );
 
