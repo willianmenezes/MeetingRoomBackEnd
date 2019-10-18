@@ -30,11 +30,11 @@ namespace MeetingRoom.Service
             }
         }
 
-        public IEnumerable<Reserva> GetByIdSala(int idSala)
+        public IEnumerable<Reserva> GetByIdSala(int idSala, DateTime dataAgenda)
         {
             try
             {
-                var reservas = _reservaRepository.GetByIdSala(idSala);
+                var reservas = _reservaRepository.GetByIdSala(idSala, dataAgenda);
 
                 List<Reserva> reservasDia = new List<Reserva>();
 
@@ -43,14 +43,15 @@ namespace MeetingRoom.Service
                 {
                     Reserva reserva = new Reserva();
 
-                    reserva.DdataHoraIni = DateTime.Now.Date;
+                    reserva.DdataHoraIni = dataAgenda.Date;
                     reserva.DdataHoraIni = reserva.DdataHoraIni.AddMinutes(i * 30);
 
-                    reserva.DdataHoraFim = DateTime.Now.Date;
+                    reserva.DdataHoraFim = dataAgenda.Date;
                     reserva.DdataHoraFim = reserva.DdataHoraFim.AddMinutes(i * 30 + 30);
 
                     var reservaCadastrada = reservas.Where(x => x.DdataHoraIni == reserva.DdataHoraIni && x.DdataHoraFim == reserva.DdataHoraFim).FirstOrDefault();
 
+                    //inserindo as reservas do dia na lista
                     if (reservaCadastrada != null)
                     {
                         reservasDia.Add(reservaCadastrada);

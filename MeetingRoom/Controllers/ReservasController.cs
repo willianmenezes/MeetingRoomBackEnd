@@ -33,7 +33,43 @@ namespace MeetingRoom.Controllers
         {
             try
             {
-                var reservas = _reservaService.GetByIdSala(id);
+                var reservas = _reservaService.GetByIdSala(id, DateTime.Now);
+
+                if (reservas == null)
+                {
+                    return NoContent();
+                }
+
+                return Ok(reservas);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
+
+        // POST: api/Reservas/Data/5
+        [HttpPost("Data/{id}")]
+        [Authorize("Bearer")]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<Reserva>))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IActionResult GetByIdSalaDate([FromRoute] int id, [FromBody] DateTime dataAgenda)
+        {
+            try
+            {
+
+                if (id == 0 || dataAgenda == null)
+                {
+                    throw new ArgumentException("Agenda ou data não fornecidos.");
+                }
+
+                if (dataAgenda.Date < DateTime.Now.Date)
+                {
+                    throw new Exception("Não é permitido buscar horários de dias anteriores.");
+                }
+
+                var reservas = _reservaService.GetByIdSala(id, dataAgenda);
 
                 if (reservas == null)
                 {
@@ -73,7 +109,7 @@ namespace MeetingRoom.Controllers
             }
         }
 
-        // DELETE: api/Reservas/
+        // DELETE: api/Reservas/5
         [HttpDelete("{id}")]
         [Authorize("Bearer")]
         [ProducesResponseType(200, Type = typeof(Reserva))]
@@ -84,20 +120,19 @@ namespace MeetingRoom.Controllers
             try
             {
 
-                throw new Exception("Teste Willian");
-                //if (id == 0)
-                //{
-                //    return NoContent();
-                //}
+                if (id == 0)
+                {
+                    throw new ArgumentException("Reserva não fornecida.");
+                }
 
-                //var reserva = _reservaService.Delete(id);
+                var reserva = _reservaService.Delete(id);
 
-                //if (reserva == null)
-                //{
-                //    return NoContent();
-                //}
+                if (reserva == null)
+                {
+                    return NoContent();
+                }
 
-                //return Ok(reserva);
+                return Ok(reserva);
             }
             catch (Exception ex)
             {

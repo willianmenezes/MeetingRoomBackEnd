@@ -36,7 +36,14 @@ namespace MeetingRoom.Controllers
                     return BadRequest("Credenciais não fornecidas.");
                 }
 
-                return Ok(_loginService.GetByLogin(credencial));
+                var login = _loginService.GetByLogin(credencial);
+
+                if (login == null)
+                {
+                    return NoContent();
+                }
+
+                return Ok(login);
             }
             catch (Exception ex)
             {

@@ -9,7 +9,7 @@ namespace MeetingRoom.Repository.Interface
     public interface IReservaRepository
     {
         Reserva Delete(int idReserva);
-        IEnumerable<Reserva> GetByIdSala(int idSala);
+        IEnumerable<Reserva> GetByIdSala(int idSala, DateTime dataAgenda);
         Reserva Post(Reserva reserva);
     }
 }

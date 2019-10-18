@@ -8,7 +8,7 @@ namespace MeetingRoom.Service.Interface
 {
     public interface IReservaService
     {
-        IEnumerable<Reserva> GetByIdSala(int idSala);
+        IEnumerable<Reserva> GetByIdSala(int idSala, DateTime dataAgenda);
         Reserva Delete(int idReserva);
         Reserva Post(Reserva reserva);
     }

@@ -39,11 +39,12 @@ namespace MeetingRoom.Repository
             }
         }
 
-        public IEnumerable<Reserva> GetByIdSala(int idSala)
+        public IEnumerable<Reserva> GetByIdSala(int idSala, DateTime dataAgenda)
         {
             try
             {
-                return _context.Reserva.Where(x => x.NidSala == idSala).ToList();
+                return _context.Reserva
+                        .Where(x => x.NidSala == idSala && x.DdataHoraIni.Date.Equals(dataAgenda.Date)).ToList();
             }
             catch (Exception ex)
             {

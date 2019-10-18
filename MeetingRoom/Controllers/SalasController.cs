@@ -33,7 +33,14 @@ namespace MeetingRoom.Controllers
         {
             try
             {
-                return Ok(_salaService.GetAll());
+                var salas = _salaService.GetAll();
+
+                if (salas == null)
+                {
+                    return NoContent();
+                }
+
+                return Ok(salas);
             }
             catch (Exception ex)
             {
