@@ -11,5 +11,7 @@ namespace MeetingRoom.Repository.Interface
         Reserva Delete(int idReserva);
         IEnumerable<Reserva> GetByIdSala(int idSala, DateTime dataAgenda);
         Reserva Post(Reserva reserva);
+        IEnumerable<Reserva> Post(IEnumerable<Reserva> reserva);
+        Reserva GetById(int idReserva);
     }
 }

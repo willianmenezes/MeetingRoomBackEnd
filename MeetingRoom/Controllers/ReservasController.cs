@@ -109,23 +109,53 @@ namespace MeetingRoom.Controllers
             }
         }
 
-        // DELETE: api/Reservas/5
-        [HttpDelete("{id}")]
+        // POST: api/Reservas/Lista
+        [HttpPost("Lista")]
+        [Authorize("Bearer")]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<Reserva>))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IActionResult PostReservasLista([FromBody] IEnumerable<Reserva> reservas)
+        {
+            try
+            {
+                if (reservas == null)
+                {
+                    throw new ArgumentException("Reservas não fornecidas.");
+                }
+
+                var reservasPos = _reservaService.Post(reservas);
+
+                if (reservasPos == null)
+                {
+                    return NoContent();
+                }
+
+                return Ok(reservasPos);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
+
+        // POST: api/Reservas/Delete/5
+        [HttpPost("Delete/{id}")]
         [Authorize("Bearer")]
         [ProducesResponseType(200, Type = typeof(Reserva))]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public IActionResult Delete([FromRoute] int id)
+        public IActionResult Delete([FromRoute] int id, [FromBody] int idUsuarioExclusao)
         {
             try
             {
 
-                if (id == 0)
+                if (id <= 0 || idUsuarioExclusao <= 0)
                 {
-                    throw new ArgumentException("Reserva não fornecida.");
+                    throw new ArgumentException("Reserva ou usuário não fornecidos.");
                 }
 
-                var reserva = _reservaService.Delete(id);
+                var reserva = _reservaService.Delete(id, idUsuarioExclusao);
 
                 if (reserva == null)
                 {

@@ -18,10 +18,22 @@ namespace MeetingRoom.Service
             _reservaRepository = reservaRepository;
         }
 
-        public Reserva Delete(int idReserva)
+        public Reserva Delete(int idReserva, int idUsuarioExclusao)
         {
             try
             {
+                var reserva = _reservaRepository.GetById(idReserva);
+
+                if (reserva == null)
+                {
+                    throw new Exception("Não existe esta reserva na base de dados.");
+                }
+
+                if (reserva.NidPessoa != idUsuarioExclusao)
+                {
+                    throw new Exception("Somente o usuário que cadastrou a reserva pode exclui-la.");
+                }
+
                 return _reservaRepository.Delete(idReserva);
             }
             catch (Exception ex)
@@ -79,6 +91,19 @@ namespace MeetingRoom.Service
             }
             catch (Exception ex)
             {
+                throw ex;
+            }
+        }
+
+        public IEnumerable<Reserva> Post(IEnumerable<Reserva> reserva)
+        {
+            try
+            {
+                return _reservaRepository.Post(reserva);
+            }
+            catch (Exception ex)
+            {
+
                 throw ex;
             }
         }

@@ -16,7 +16,6 @@ namespace MeetingRoom.Models
         public string Sdescricao { get; set; }
         public int? NmotivoCancelamento { get; set; }
 
-        [JsonIgnore]
         public virtual Pessoa NidPessoaNavigation { get; set; }
         [JsonIgnore]
         public virtual Sala NidSalaNavigation { get; set; }
