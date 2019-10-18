@@ -56,6 +56,22 @@ namespace MeetingRoom.Repository
             }
         }
 
+        public Sala InsertSala(Sala sala)
+        {
+            try
+            {
+                _context.Sala.Add(sala);
+
+                _context.SaveChanges();
+
+                return sala;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erro ao inserir sala.", ex);
+            }
+        }
+
         public Sala Update(Sala sala, int idSala)
         {
             throw new NotImplementedException();

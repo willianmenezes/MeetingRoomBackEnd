@@ -13,5 +13,6 @@ namespace MeetingRoom.Repository.Interface
         Sala Delete(int idSala);
         Sala Update(Sala sala, int idSala);
         bool Exists(int idSala);
+        Sala InsertSala(Sala sala);
     }
 }

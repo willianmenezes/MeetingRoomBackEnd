@@ -72,5 +72,35 @@ namespace MeetingRoom.Controllers
                 return BadRequest(ex);
             }
         }
+
+        // Post: api/Salas/
+        [HttpPost]
+        [Authorize("Bearer")]
+        [ProducesResponseType(200, Type = typeof(Sala))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
+        public IActionResult PostSala([FromBody] Sala sala)
+        {
+            try
+            {
+                if (sala == null)
+                {
+                    throw new Exception("Sala não fornecida para insersão.");
+                }
+
+                var salaInserida = _salaService.InsertSala(sala);
+
+                if (salaInserida.NidSala <= 0)
+                {
+                    return NoContent();
+                }
+
+                return Ok(salaInserida);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
     }
 }
