@@ -10,7 +10,7 @@
 
 Para executar a a API corretamente é necessário atentar-se a alguns detalhes:
 
-**1-** O banco de dados utilizado na aplicação foi o SQL Server Express 2017.
+**1-** O banco de dados utilizado na aplicação foi o SQL Server Express 2017 e o Visual Studio 2019. 
 
 **2-** Para que a API comunique com o banco de dados sem problemas é necessário estar atento à string de conexão, que fica localizada no arquivo "appsettings.json"
      
