@@ -14,10 +14,11 @@ Para executar a a API corretamente é necessário atentar-se a alguns detalhes:
 
 **2-** Para que a API comunique com o banco de dados sem problemas é necessário estar atento à string de conexão, que fica localizada no arquivo "appsettings.json"
      
-      A string de conxão correta para a aplicação é: 
+#### A string de conxão correta para a aplicação é: 
       
       "MeetingRoom": "Server=[Nome do Servidor];Database=MeetingRoom;User ID=sa;Password=[Senha do usuário sa];Trusted_Connection=true;"
-     **Substituir os valores entre chaves**
+
+**Substituir os valores entre chaves**
      
 **3-** O usuário utilizado pela aplicação é o "sa" e para ele conseguir acessar o banco de dados corretamente é necessário que ele esteja habilitado a fazer logon e com permissão para conectar. Caso tenha problemas pode-se utilizar esse [link](https://www.devmedia.com.br/ativar-usuario-sa-sql-server/20794). 
 
