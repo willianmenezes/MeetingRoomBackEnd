@@ -1,5 +1,7 @@
 ## MeetingRoomBackEnd - API RESTFULL para gerenciamento das salas de reuniões
 
+### Primeiros passos:
+
 **1-** Baixar o SDK do .NETCore 2.2 [aqui](https://dotnet.microsoft.com/download/thank-you/dotnet-sdk-2.2.402-windows-x64-installer).
 
 **2-** Restaurar o banco de dados que está localizado no diretório "Utils" da aplicação com o nome "MeetingRoom.sql";
