@@ -83,7 +83,7 @@ namespace MeetingRoom.Models
 
                 entity.Property(e => e.NidPessoa)
                     .HasColumnName("NIdPessoa")
-                    .ValueGeneratedOnAdd();
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.SfinalExpiration)
                     .HasColumnName("SFinalExpiration")
@@ -120,10 +120,6 @@ namespace MeetingRoom.Models
 
                 entity.Property(e => e.NidSala).HasColumnName("NIdSala");
 
-                entity.Property(e => e.NmotivoCancelamento).HasColumnName("NMotivoCancelamento");
-
-                entity.Property(e => e.Nstatus).HasColumnName("NStatus");
-
                 entity.Property(e => e.Sdescricao)
                     .IsRequired()
                     .HasColumnName("SDescricao")
@@ -155,7 +151,14 @@ namespace MeetingRoom.Models
 
                 entity.Property(e => e.NidSala).HasColumnName("NIdSala");
 
+                entity.Property(e => e.NqtdLugares).HasColumnName("NQtdLugares");
+
                 entity.Property(e => e.Nstatus).HasColumnName("NStatus");
+
+                entity.Property(e => e.Sandar)
+                    .HasColumnName("SAndar")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Snome)
                     .IsRequired()

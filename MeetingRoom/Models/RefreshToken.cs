@@ -9,7 +9,6 @@ namespace MeetingRoom.Models
         public int NidPessoa { get; set; }
         public string SrefreshToken { get; set; }
         public string SfinalExpiration { get; set; }
-
         [JsonIgnore]
         public virtual Pessoa NidPessoaNavigation { get; set; }
     }

@@ -18,7 +18,6 @@ namespace MeetingRoom.Models
         public string Slogin { get; set; }
         public string Ssenha { get; set; }
         public int NidTipoPessoa { get; set; }
-
         [JsonIgnore]
         public virtual TipoPessoa NidTipoPessoaNavigation { get; set; }
         [JsonIgnore]
